@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod2
+  labels:
+    app: web
+spec:
+  containers:
+  - name: myctn2
+    image: nginx
+    resources:
+      limits: # 최대사용가능용량량
+        cpu: 500m
+        memory: 128Mi
+      requests: # 최소보장
+        cpu: 250m # 0.1개개
+        memory: 64Mi
+    ports:
+    - containerPort:  80
+      name:  http
+    volumeMounts:
+    - name: myvol2
+      mountPath: /usr/share/nginx/htmli8777777777
+  volumes:
+    - name: myvol2
+      persistentVolumeClaim:
+        claimName: dev1-pvc
